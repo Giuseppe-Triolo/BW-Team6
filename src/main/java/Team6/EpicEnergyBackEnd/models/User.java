@@ -1,9 +1,6 @@
 package Team6.EpicEnergyBackEnd.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +30,7 @@ public class User implements UserDetails {
     private String name;
     private String surname;
     private String avatar;
+    @Enumerated(EnumType.STRING)
     private List<Role> role;
 
     public User(String username, String email, String password, String name, String surname, String avatar) {
