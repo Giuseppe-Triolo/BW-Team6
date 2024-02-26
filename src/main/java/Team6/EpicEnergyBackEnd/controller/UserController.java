@@ -1,6 +1,7 @@
 package Team6.EpicEnergyBackEnd.controller;
 
 
+import Team6.EpicEnergyBackEnd.DTO.RoleDTO;
 import Team6.EpicEnergyBackEnd.models.User;
 import Team6.EpicEnergyBackEnd.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,11 @@ public class UserController {
     @PatchMapping("/profile")
     public User uploadAvatar(@AuthenticationPrincipal User currentUser, @RequestParam("avatar")MultipartFile image) throws IOException{
         return this.userService.uploadAvatar(currentUser, image);
+    }
+
+    @PatchMapping("/{UserId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public User updateRole(@PathVariable UUID UserId ,@RequestBody RoleDTO role) throws Exception {
+        return this.userService.updateRole(UserId, role);
     }
 }

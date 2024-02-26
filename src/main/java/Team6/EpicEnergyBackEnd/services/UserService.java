@@ -1,11 +1,14 @@
 package Team6.EpicEnergyBackEnd.services;
 
 
+import Team6.EpicEnergyBackEnd.DTO.RoleDTO;
 import Team6.EpicEnergyBackEnd.dao.UserDAO;
 import Team6.EpicEnergyBackEnd.exceptions.NotFoundException;
+import Team6.EpicEnergyBackEnd.models.Role;
 import Team6.EpicEnergyBackEnd.models.User;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import jakarta.transaction.RollbackException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -59,5 +64,19 @@ public class UserService {
         currentUser.setAvatar(avatarUrl);
         this.userDAO.save(currentUser);
         return currentUser;
+    }
+
+    public User updateRole(UUID id, RoleDTO role) throws Exception {
+        User found = this.findById(id);
+        List<Role> roles = new ArrayList<>();
+        roles.addAll(found.getRole());
+        if (role.role().toLowerCase().equals(Role.ADMIN.toString().toLowerCase())){
+            roles.add(Role.ADMIN);
+            found.setRole(roles);
+            this.userDAO.save(found);
+            return found;
+        }else {
+            throw new Exception("Invalid role");
+        }
     }
 }
