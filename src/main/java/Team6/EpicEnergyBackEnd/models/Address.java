@@ -1,8 +1,10 @@
 package Team6.EpicEnergyBackEnd.models;
 
+import Team6.EpicEnergyBackEnd.DTO.AddressDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +27,17 @@ public class Address {
 
     private Long postalCode;
 
-    private String city;
+    @ManyToOne
+    private City city;
+
+    public static Address fromDTO(AddressDTO addressDTO) {
+        Address address = new Address();
+        address.street = addressDTO.street();
+        address.houseNumber = addressDTO.houseNumber();
+        address.country = addressDTO.country();
+        address.postalCode = addressDTO.postalCode();
+
+        return address;
+    }
 
 }

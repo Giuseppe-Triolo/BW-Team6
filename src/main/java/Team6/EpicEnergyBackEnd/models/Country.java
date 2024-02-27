@@ -1,5 +1,6 @@
 package Team6.EpicEnergyBackEnd.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Country {
     String countryName;
     String region;
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     List<City> cities;
 
     public Country(String abbreviation, String countryName, String region) {

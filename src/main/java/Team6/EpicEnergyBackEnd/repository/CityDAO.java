@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CityDAO extends JpaRepository<City, Integer> {
+
+    City findByNameOfCity(String name);
 }

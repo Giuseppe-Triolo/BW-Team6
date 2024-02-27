@@ -1,7 +1,11 @@
 package Team6.EpicEnergyBackEnd.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -11,9 +15,9 @@ import lombok.*;
 @Table(name = "cities")
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Setter(AccessLevel.NONE)
-    int id;
+    UUID id;
     @Column(name = "country_code")
     String countryCode;
     @Column(name = "progressive_of_City")
@@ -23,6 +27,10 @@ public class City {
     @ManyToOne
     @JoinColumn(name = "country_id")
     Country country;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "city")
+    @JsonIgnore
+    List<Address> address;
 
     public City(String countryCode, String progressiveOfCity, String nameOfCity, Country country) {
         this.countryCode = countryCode;
