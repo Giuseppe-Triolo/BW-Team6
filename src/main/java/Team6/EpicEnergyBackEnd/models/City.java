@@ -28,7 +28,7 @@ public class City {
     @JoinColumn(name = "country_id")
     Country country;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "city")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "city", fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     List<Address> address;
 
