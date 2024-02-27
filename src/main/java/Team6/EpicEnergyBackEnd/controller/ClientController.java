@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
@@ -24,5 +26,20 @@ private ClientService clientService;
     @PostMapping("/")
     public Client create(ClientDTO clientDTO) {
        return clientService.create(clientDTO);
+    }
+
+    @PutMapping("/{id}")
+    public Client updateByID(@RequestBody ClientDTO clientDTO, @PathVariable UUID id) {
+        return clientService.findByIdAndUpdate( id, Client.fromDTO(clientDTO));
+    }
+
+    @GetMapping("/{id}")
+    public Client getById(@PathVariable UUID id ) {
+        return clientService.getBbyId(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable UUID id) {
+        clientService.deleteById(id);
     }
 }

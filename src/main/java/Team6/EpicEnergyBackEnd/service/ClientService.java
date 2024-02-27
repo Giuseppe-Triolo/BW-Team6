@@ -39,6 +39,10 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    public void deleteById(UUID id) {
+        clientRepository.deleteById(id);
+    }
+
 
     public List<Client> getAllOrderedByName() {
         return clientRepository.findByOrderByBusinessName();
@@ -69,12 +73,6 @@ public class ClientService {
     public List<Client> getClientsByBusinessName(String businessName) {
         return clientRepository.findByBusinessNameContaining(businessName);
     }
-
-
-
-
-
-
 
 
 
