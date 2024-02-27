@@ -63,7 +63,7 @@ public class UserController {
         this.userService.deleteUser(id);
     }
 
-    @PatchMapping("/profile")
+    @PatchMapping("/profile/upload")
     public User uploadAvatar(@AuthenticationPrincipal User currentUser, @RequestParam("avatar")MultipartFile image) throws IOException{
         return this.userService.uploadAvatar(currentUser, image);
     }
