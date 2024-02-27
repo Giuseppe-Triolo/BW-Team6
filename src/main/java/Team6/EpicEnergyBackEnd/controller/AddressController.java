@@ -1,4 +1,8 @@
 package Team6.EpicEnergyBackEnd.controller;
 
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class AddressController {
+
 }

@@ -1,5 +1,6 @@
 package Team6.EpicEnergyBackEnd.models;
 
+import Team6.EpicEnergyBackEnd.DTO.ClientDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,5 +50,24 @@ public class Client {
 
     @OneToMany
     private List<Invoice> invoices;
+
+    public static Client fromDTO(ClientDTO clientDTO) {
+        Client client = new Client();
+        client.businessName = clientDTO.businessName();
+        client.vatNumber = clientDTO.vatNumber();
+        client.email = clientDTO.email();
+        client.startDate = clientDTO.startDate();
+        client.lastContact = clientDTO.lastContact();
+        client.annualTurnover = clientDTO.annualTurnover();
+        client.pec = clientDTO.pec();
+        client.number = clientDTO.number();
+        client.emailReferee = clientDTO.emailReferee();
+        client.nameReferee = clientDTO.nameReferee();
+        client.surnameReferee = clientDTO.surnameReferee();
+        client.numberReferee = clientDTO.numberReferee();
+        client.logo = clientDTO.logo();
+
+        return client;
+    }
 
 }

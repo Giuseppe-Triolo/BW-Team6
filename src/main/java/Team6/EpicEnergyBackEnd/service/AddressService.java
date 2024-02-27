@@ -1,6 +1,5 @@
 package Team6.EpicEnergyBackEnd.service;
 
-import Team6.EpicEnergyBackEnd.models.Address;
 import Team6.EpicEnergyBackEnd.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,5 +10,5 @@ public class AddressService {
     private AddressRepository addressRepository;
 
 
-  }
 }
+
