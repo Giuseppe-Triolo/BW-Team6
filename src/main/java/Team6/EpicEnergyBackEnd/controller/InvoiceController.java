@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/invoices")
@@ -25,10 +25,11 @@ public class InvoiceController {
 
     @GetMapping("/{invoiceNumber}")
     public ResponseEntity<Invoice> getInvoice(@PathVariable Long invoiceNumber) {
-        Optional<Invoice> invoiceOptional = invoiceService.getInvoice(invoiceNumber);
-        return invoiceOptional.map(invoice -> new ResponseEntity<>(invoice, HttpStatus.OK))
+        return invoiceService.getInvoice(invoiceNumber)
+                .map(invoice -> new ResponseEntity<>(invoice, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
     @PutMapping("/{invoiceNumber}")
     public ResponseEntity<Invoice> updateInvoice(@PathVariable Long invoiceNumber, @RequestBody Invoice updatedInvoice) {
         Invoice invoice = invoiceService.updateInvoice(invoiceNumber, updatedInvoice);
@@ -40,6 +41,46 @@ public class InvoiceController {
         invoiceService.deleteInvoice(invoiceNumber);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/client/{clientId}")
+    public ResponseEntity<List<Invoice>> getInvoicesByClientId(@PathVariable String clientId) {
+        List<Invoice> invoices = invoiceService.getInvoicesByClientId(clientId);
+        return new ResponseEntity<>(invoices, HttpStatus.OK);
+    }
+
+    @GetMapping("/state/{state}")
+    public ResponseEntity<List<Invoice>> getInvoicesByState(@PathVariable String state) {
+        List<Invoice> invoices = invoiceService.getInvoicesByState(state);
+        return new ResponseEntity<>(invoices, HttpStatus.OK);
+    }
+
+    @GetMapping("/date/{date}")
+    public ResponseEntity<List<Invoice>> getInvoicesByDate(@PathVariable String date) {
+        LocalDate parsedDate = LocalDate.parse(date);
+        List<Invoice> invoices = invoiceService.getInvoicesByDate(parsedDate);
+        return new ResponseEntity<>(invoices, HttpStatus.OK);
+    }
+
+    @GetMapping("/date-range/{startDate}/{endDate}")
+    public ResponseEntity<List<Invoice>> getInvoicesByDateRange(@PathVariable String startDate, @PathVariable String endDate) {
+        LocalDate parsedStartDate = LocalDate.parse(startDate);
+        LocalDate parsedEndDate = LocalDate.parse(endDate);
+        List<Invoice> invoices = invoiceService.getInvoicesByDateRange(parsedStartDate, parsedEndDate);
+        return new ResponseEntity<>(invoices, HttpStatus.OK);
+    }
+
+    @GetMapping("/year/{year}")
+    public ResponseEntity<List<Invoice>> getInvoicesByYear(@PathVariable int year) {
+        List<Invoice> invoices = invoiceService.getInvoicesByYear(year);
+        return new ResponseEntity<>(invoices, HttpStatus.OK);
+    }
+
+    @GetMapping("/amount-range/{minAmount}/{maxAmount}")
+    public ResponseEntity<List<Invoice>> getInvoicesByAmountRange(@PathVariable double minAmount, @PathVariable double maxAmount) {
+        List<Invoice> invoices = invoiceService.getInvoicesByAmountRange(minAmount, maxAmount);
+        return new ResponseEntity<>(invoices, HttpStatus.OK);
+    }
+
     @GetMapping("")
     public ResponseEntity<List<Invoice>> getAllInvoices() {
         List<Invoice> invoices = invoiceService.getAllInvoices();

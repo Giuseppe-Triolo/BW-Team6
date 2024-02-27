@@ -1,10 +1,9 @@
 package Team6.EpicEnergyBackEnd.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 
 import java.time.LocalDate;
 
@@ -23,5 +22,7 @@ public class Invoice {
 
     private String state;
 
+    private int year;
 
+    private String clientId;
 }

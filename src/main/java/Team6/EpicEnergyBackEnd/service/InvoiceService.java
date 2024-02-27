@@ -5,6 +5,7 @@ import Team6.EpicEnergyBackEnd.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,28 @@ public class InvoiceService {
     }
     public List<Invoice> getAllInvoices() {
         return invoiceRepository.findAll();
+    }
+    public List<Invoice> getInvoicesByClientId(String clientId) {
+        return invoiceRepository.findByClientId(clientId);
+    }
+
+    public List<Invoice> getInvoicesByState(String state) {
+        return invoiceRepository.findByState(state);
+    }
+
+    public List<Invoice> getInvoicesByDate(LocalDate date) {
+        return invoiceRepository.findByDate(date);
+    }
+
+    public List<Invoice> getInvoicesByDateRange(LocalDate startDate, LocalDate endDate) {
+        return invoiceRepository.findByDateBetween(startDate, endDate);
+    }
+
+    public List<Invoice> getInvoicesByYear(int year) {
+        return invoiceRepository.findByYear(year);
+    }
+
+    public List<Invoice> getInvoicesByAmountRange(double minAmount, double maxAmount) {
+        return invoiceRepository.findByAmountBetween(minAmount, maxAmount);
     }
 }
