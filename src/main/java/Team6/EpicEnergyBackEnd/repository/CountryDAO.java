@@ -1,4 +1,4 @@
-package Team6.EpicEnergyBackEnd.DAO;
+package Team6.EpicEnergyBackEnd.repository;
 
 import Team6.EpicEnergyBackEnd.models.Country;
 import org.springframework.data.jpa.repository.JpaRepository;

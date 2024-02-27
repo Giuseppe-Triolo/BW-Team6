@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "countries")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
+@Table(name = "cities")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
