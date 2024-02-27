@@ -3,7 +3,7 @@ package Team6.EpicEnergyBackEnd.services;
 
 import Team6.EpicEnergyBackEnd.DTO.UserDTO;
 import Team6.EpicEnergyBackEnd.DTO.UserLoginDTO;
-import Team6.EpicEnergyBackEnd.dao.UserDAO;
+import Team6.EpicEnergyBackEnd.repository.UserRepository;
 import Team6.EpicEnergyBackEnd.exceptions.BadRequestException;
 import Team6.EpicEnergyBackEnd.exceptions.UnauthorizedExeption;
 import Team6.EpicEnergyBackEnd.models.User;
@@ -25,7 +25,7 @@ public class AuthService {
     private PasswordEncoder bcrypt;
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userDAO;
 
 
     public String authUserAndGenerateToken(UserLoginDTO body) throws UnauthorizedExeption {

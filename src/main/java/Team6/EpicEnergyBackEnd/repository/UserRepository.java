@@ -1,4 +1,4 @@
-package Team6.EpicEnergyBackEnd.dao;
+package Team6.EpicEnergyBackEnd.repository;
 
 import Team6.EpicEnergyBackEnd.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 
 @Repository
-public interface UserDAO extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, UUID> {
 
     Optional<User> findByEmail(String email);
 }

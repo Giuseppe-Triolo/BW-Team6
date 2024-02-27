@@ -2,13 +2,12 @@ package Team6.EpicEnergyBackEnd.services;
 
 
 import Team6.EpicEnergyBackEnd.DTO.RoleDTO;
-import Team6.EpicEnergyBackEnd.dao.UserDAO;
+import Team6.EpicEnergyBackEnd.repository.UserRepository;
 import Team6.EpicEnergyBackEnd.exceptions.NotFoundException;
 import Team6.EpicEnergyBackEnd.models.Role;
 import Team6.EpicEnergyBackEnd.models.User;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import jakarta.transaction.RollbackException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +25,7 @@ import java.util.UUID;
 public class UserService {
 
     @Autowired
-    UserDAO userDAO;
+    UserRepository userDAO;
 
     @Autowired
     Cloudinary cloudinary;
