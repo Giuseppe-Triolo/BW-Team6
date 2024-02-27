@@ -23,8 +23,8 @@ private ClientService clientService;
         return this.clientService.getClients(page, size, orderBy);
     }
 
-    @PostMapping("/")
-    public Client create(ClientDTO clientDTO) {
+    @PostMapping("")
+    public Client create(@RequestBody ClientDTO clientDTO) {
        return clientService.create(clientDTO);
     }
 
