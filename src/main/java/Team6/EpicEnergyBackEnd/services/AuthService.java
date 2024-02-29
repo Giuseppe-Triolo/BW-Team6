@@ -3,6 +3,7 @@ package Team6.EpicEnergyBackEnd.services;
 
 import Team6.EpicEnergyBackEnd.DTO.UserDTO;
 import Team6.EpicEnergyBackEnd.DTO.UserLoginDTO;
+import Team6.EpicEnergyBackEnd.config.MailgunSender;
 import Team6.EpicEnergyBackEnd.repository.UserRepository;
 import Team6.EpicEnergyBackEnd.exceptions.BadRequestException;
 import Team6.EpicEnergyBackEnd.exceptions.UnauthorizedExeption;
@@ -27,6 +28,9 @@ public class AuthService {
     @Autowired
     private UserRepository userDAO;
 
+    @Autowired
+    private MailgunSender mailgunSender;
+
 
     public String authUserAndGenerateToken(UserLoginDTO body) throws UnauthorizedExeption {
         User user = userService.findByEmail(body.email());
@@ -44,7 +48,8 @@ public class AuthService {
         String avatar =  "https://ui-avatars.com/api/?name=" + user.name() + "+" + user.surname();
         User newUser = new User(user.username(), user.email(), bcrypt.encode(user.password()), user.name(), user.surname(), avatar);
 
-        User savedUser = userDAO.save(newUser);;
+        User savedUser = userDAO.save(newUser);
+        mailgunSender.sendRegistrationEmail(savedUser);
         return savedUser;
     }
 }
