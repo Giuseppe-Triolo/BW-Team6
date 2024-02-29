@@ -14,19 +14,20 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
     @Autowired
     AuthService authService;
 
     @PostMapping("/login")
-    public LoginDTO login(@RequestBody UserLoginDTO body){
+    public LoginDTO login(@RequestBody UserLoginDTO body) {
         return new LoginDTO(authService.authUserAndGenerateToken(body));
     }
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public User register(@RequestBody @Validated UserDTO body, BindingResult validation){
+    public User register(@RequestBody @Validated UserDTO body, BindingResult validation) {
         if (validation.hasErrors()) {
             throw new BadRequestException(validation.getAllErrors());
         }

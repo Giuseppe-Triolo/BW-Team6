@@ -29,7 +29,7 @@ public class ConfigSecurity {
     JWTFilter jwtFilter;
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -42,19 +42,20 @@ public class ConfigSecurity {
     }
 
     @Bean
-    PasswordEncoder getBCrypt(){
+    PasswordEncoder getBCrypt() {
         return new BCryptPasswordEncoder(11);
     }
 
     @Bean
-    CorsConfigurationSource cors(){
+    CorsConfigurationSource cors() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        config.setAllowedMethods(Arrays.asList("*"));
-        config.setAllowedHeaders(Arrays.asList("*"));
-
+        config.setAllowedMethods(Arrays.asList("**"));
+        config.setAllowedHeaders(Arrays.asList("**"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
     }
+
+    
 }
