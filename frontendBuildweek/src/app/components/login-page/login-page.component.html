@@ -1,0 +1,47 @@
+<div
+  class="container d-flex flex-column align-items-center justify-content-center"
+>
+  <div id="div-form">
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email address</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="inputEmail"
+          email
+          required
+          ngModel
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="inputPassword"
+          required
+          ngModel
+        />
+      </div>
+      <div class="mt-4 d-flex justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-danger"
+          [disabled]="!loginForm.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+  <a
+    class="mt-2 text-white"
+    routerLink="/register-page"
+    routerLinkActive="active"
+  >
+    Registrati
+  </a>
+</div>
