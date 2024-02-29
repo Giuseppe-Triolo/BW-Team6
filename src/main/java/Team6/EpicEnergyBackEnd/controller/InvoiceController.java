@@ -1,10 +1,11 @@
 package Team6.EpicEnergyBackEnd.controller;
 
 import Team6.EpicEnergyBackEnd.models.Invoice;
-import Team6.EpicEnergyBackEnd.service.InvoiceService;
+import Team6.EpicEnergyBackEnd.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Invoice> createInvoice(@RequestBody Invoice invoice) {
         Invoice createdInvoice = invoiceService.createInvoice(invoice);
         return new ResponseEntity<>(createdInvoice, HttpStatus.CREATED);
@@ -31,12 +33,14 @@ public class InvoiceController {
     }
 
     @PutMapping("/{invoiceNumber}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Invoice> updateInvoice(@PathVariable Long invoiceNumber, @RequestBody Invoice updatedInvoice) {
         Invoice invoice = invoiceService.updateInvoice(invoiceNumber, updatedInvoice);
         return new ResponseEntity<>(invoice, HttpStatus.OK);
     }
 
     @DeleteMapping("/{invoiceNumber}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> deleteInvoice(@PathVariable Long invoiceNumber) {
         invoiceService.deleteInvoice(invoiceNumber);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

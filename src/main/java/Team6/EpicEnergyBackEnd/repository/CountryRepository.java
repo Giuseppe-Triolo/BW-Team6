@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CountryDAO extends JpaRepository<Country, Integer> {
+public interface CountryRepository extends JpaRepository<Country, Integer> {
     Optional<Country> findByCountryName(String countryName);
 }

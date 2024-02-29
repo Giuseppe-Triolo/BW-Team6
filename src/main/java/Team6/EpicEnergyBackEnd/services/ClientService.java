@@ -1,4 +1,4 @@
-package Team6.EpicEnergyBackEnd.service;
+package Team6.EpicEnergyBackEnd.services;
 
 import Team6.EpicEnergyBackEnd.DTO.ClientDTO;
 import Team6.EpicEnergyBackEnd.models.Client;

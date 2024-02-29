@@ -1,6 +1,6 @@
 package Team6.EpicEnergyBackEnd;
 
-import Team6.EpicEnergyBackEnd.DTO.CountryPayload;
+import Team6.EpicEnergyBackEnd.DTO.CountryDTO;
 import Team6.EpicEnergyBackEnd.models.City;
 import Team6.EpicEnergyBackEnd.models.Country;
 import Team6.EpicEnergyBackEnd.services.CityService;
@@ -47,17 +47,17 @@ public class CSVRunner implements CommandLineRunner {
                     }
                     count++;
                 }
-                countryService.updateOfProvince("Monza-Brianza", new CountryPayload("MB", "Monza e della Brianza", "Lombardia"));
-                countryService.updateOfProvince("Bolzano", new CountryPayload("BZ", "Bolzano/Bozen", "Veneto"));
-                countryService.updateOfProvince("La-Spezia", new CountryPayload("SP", "La Spezia", "Liguria"));
-                countryService.updateOfProvince("Reggio-Emilia", new CountryPayload("RE", "Reggio nell'Emilia", "Emilia-Romagna"));
-                countryService.updateOfProvince("Forli-Cesena", new CountryPayload("FC", "Forlì-Cesena", "Emilia-Romagna"));
-                countryService.updateOfProvince("Pesaro-Urbino", new CountryPayload("PU", "Pesaro e Urbino", "Marche"));
-                countryService.updateOfProvince("Ascoli-Piceno", new CountryPayload("AP", "Ascoli Piceno", "Marche"));
-                countryService.updateOfProvince("Reggio-Calabria", new CountryPayload("RC", "Reggio Calabria", "Calabria"));
-                countryService.updateOfProvince("Vibo-Valentia", new CountryPayload("VV", "Vibo Valentia", "Calabria"));
-                countryService.updateOfProvince("Verbania", new CountryPayload("VCO", "Verbano-Cusio-Ossola", "Piemonte"));
-                countryService.updateOfProvince("Aosta", new CountryPayload("AO", "Valle d'Aosta/Vallée d'Aoste", "Valle d'Aosta/Vallée d'Aoste"));
+                countryService.updateOfProvince("Monza-Brianza", new CountryDTO("MB", "Monza e della Brianza", "Lombardia"));
+                countryService.updateOfProvince("Bolzano", new CountryDTO("BZ", "Bolzano/Bozen", "Veneto"));
+                countryService.updateOfProvince("La-Spezia", new CountryDTO("SP", "La Spezia", "Liguria"));
+                countryService.updateOfProvince("Reggio-Emilia", new CountryDTO("RE", "Reggio nell'Emilia", "Emilia-Romagna"));
+                countryService.updateOfProvince("Forli-Cesena", new CountryDTO("FC", "Forlì-Cesena", "Emilia-Romagna"));
+                countryService.updateOfProvince("Pesaro-Urbino", new CountryDTO("PU", "Pesaro e Urbino", "Marche"));
+                countryService.updateOfProvince("Ascoli-Piceno", new CountryDTO("AP", "Ascoli Piceno", "Marche"));
+                countryService.updateOfProvince("Reggio-Calabria", new CountryDTO("RC", "Reggio Calabria", "Calabria"));
+                countryService.updateOfProvince("Vibo-Valentia", new CountryDTO("VV", "Vibo Valentia", "Calabria"));
+                countryService.updateOfProvince("Verbania", new CountryDTO("VCO", "Verbano-Cusio-Ossola", "Piemonte"));
+                countryService.updateOfProvince("Aosta", new CountryDTO("AO", "Valle d'Aosta/Vallée d'Aoste", "Valle d'Aosta/Vallée d'Aoste"));
                 countryService.creationOfSouthSardinia();
             } catch (IOException | CsvValidationException e) {
                 e.printStackTrace();

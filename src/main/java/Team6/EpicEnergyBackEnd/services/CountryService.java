@@ -1,30 +1,31 @@
 package Team6.EpicEnergyBackEnd.services;
 
-import Team6.EpicEnergyBackEnd.DTO.CountryPayload;
+import Team6.EpicEnergyBackEnd.DTO.CountryDTO;
+import Team6.EpicEnergyBackEnd.exceptions.NotFoundException;
 import Team6.EpicEnergyBackEnd.models.Country;
-import Team6.EpicEnergyBackEnd.repository.CountryDAO;
+import Team6.EpicEnergyBackEnd.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CountryService {
     @Autowired
-    CountryDAO countryDAO;
+    CountryRepository countryRepository;
 
     public Country saveNewElement(Country country) {
-        return countryDAO.save(country);
+        return countryRepository.save(country);
     }
 
     public Country findByCountryName(String countryName) {
-        return countryDAO.findByCountryName(countryName).orElseThrow(() -> new RuntimeException("Non è stato trovato nessun elemento"));
+        return countryRepository.findByCountryName(countryName).orElseThrow(() -> new NotFoundException("Not found any element"));
     }
 
-    public void updateOfProvince(String oldName, CountryPayload newProvince) {
+    public void updateOfProvince(String oldName, CountryDTO newProvince) {
         Country countryToUpdate = findByCountryName(oldName);
         countryToUpdate.setCountryName(newProvince.getCountryName());
         countryToUpdate.setAbbreviation(newProvince.getAbbreviation());
         countryToUpdate.setRegion(newProvince.getRegion());
-        countryDAO.save(countryToUpdate);
+        countryRepository.save(countryToUpdate);
     }
 
     public void creationOfSouthSardinia() {
@@ -32,16 +33,16 @@ public class CountryService {
         Country country = findByCountryName("Carbonia Iglesias");
         country.setCountryName("Sud Sardegna");
         country.setAbbreviation("SU");
-        countryDAO.save(country);
+        countryRepository.save(country);
     }
 
     public void deleteByProvinceName(String provinceName) {
         Country country = findByCountryName(provinceName);
-        countryDAO.delete(country);
+        countryRepository.delete(country);
     }
 
     public boolean presenceOfRecords() {
-        if (countryDAO.count() > 0) return true;
+        if (countryRepository.count() > 0) return true;
         return false;
     }
 }

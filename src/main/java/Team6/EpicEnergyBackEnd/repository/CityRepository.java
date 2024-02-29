@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CityDAO extends JpaRepository<City, Integer> {
+public interface CityRepository extends JpaRepository<City, Integer> {
     City findByNameOfCity(String name);
 
     List<City> findByprogressiveOfCity(String progressiveOfCity);

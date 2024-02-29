@@ -5,13 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CountryPayload {
+public class CountryDTO {
 
     String abbreviation;
     String countryName;
     String region;
 
-    public CountryPayload(String abbreviation, String countryName, String region) {
+    public CountryDTO(String abbreviation, String countryName, String region) {
         this.abbreviation = abbreviation;
         this.countryName = countryName;
         this.region = region;
