@@ -2,6 +2,9 @@ package Team6.EpicEnergyBackEnd.config;
 
 
 import Team6.EpicEnergyBackEnd.models.User;
+import jakarta.servlet.ServletException;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,12 +21,12 @@ public class MailgunSender {
     }
 
     public void sendRegistrationEmail(User userRegister){
-        Unirest.post("https://api.mailgun.net/v3/" + domainName + "/messages")
-                .basicAuth("api", mailGunAPIKey)
-                .queryString("from", "Giuseppe Triolo <giuseppe.triolo99@gmail.com>")
-                .queryString("to", userRegister.getEmail())
-                .queryString("subject", "Registrazione completata")
-                .queryString("text", "Complimenti per esserti registrato")
-                .asJson();
+            Unirest.post("https://api.mailgun.net/v3/" + domainName + "/messages")
+                    .basicAuth("api", mailGunAPIKey)
+                    .queryString("from", "EpicEnergy <EpicEnergySRL@gmail.com>")
+                    .queryString("to", userRegister.getEmail())
+                    .queryString("subject", "Registrazione completata")
+                    .queryString("text", "Complimenti per esserti registrato")
+                    .asJson();
     }
 }
