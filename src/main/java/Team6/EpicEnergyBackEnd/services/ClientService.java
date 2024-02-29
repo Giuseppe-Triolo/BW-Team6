@@ -1,6 +1,8 @@
 package Team6.EpicEnergyBackEnd.services;
 
 import Team6.EpicEnergyBackEnd.DTO.ClientDTO;
+import Team6.EpicEnergyBackEnd.config.MailgunSender;
+import Team6.EpicEnergyBackEnd.exceptions.NotFoundException;
 import Team6.EpicEnergyBackEnd.models.Client;
 import Team6.EpicEnergyBackEnd.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,17 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private MailgunSender mailgunSender;
 
     public Client create(ClientDTO clientDTO) {
-        return clientRepository.save(Client.fromDTO(clientDTO));
+        Client newClient = clientRepository.save(Client.fromDTO(clientDTO));
+        mailgunSender.sendRegistrationClient(newClient);
+        return newClient;
     }
 
     public Client getBbyId(UUID id) {
-        return clientRepository.findById(id).orElseThrow();
+        return clientRepository.findById(id).orElseThrow(()-> new NotFoundException(id));
     }
 
     public Client findByIdAndUpdate(UUID id, Client client) {
@@ -40,6 +46,8 @@ public class ClientService {
     }
 
     public void deleteById(UUID id) {
+        Client found = this.getBbyId(id);
+        mailgunSender.deleteAccountClient(found);
         clientRepository.deleteById(id);
     }
 
