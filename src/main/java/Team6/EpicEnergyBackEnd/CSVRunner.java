@@ -26,6 +26,8 @@ public class CSVRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String path;
+
+        //Inserimento delle province nel DB
         if (!countryService.presenceOfRecords()) {
             path = new File("./src/main/java/Team6/EpicEnergyBackEnd/CSVs/province-italiane.csv").getAbsolutePath();
             System.out.println(path);
@@ -42,7 +44,6 @@ public class CSVRunner implements CommandLineRunner {
                         Country country = new Country(countryCamps[0], countryCamps[1], countryCamps[2]);
                         System.out.println(country);
                         countryService.saveNewElement(country);
-
                     }
                     count++;
                 }
@@ -62,6 +63,7 @@ public class CSVRunner implements CommandLineRunner {
                 e.printStackTrace();
             }
         }
+        //Inserimento dei comuni nel DB
         if (!cityService.presenceOfRecords()) {
             path = new File("./src/main/java/Team6/EpicEnergyBackEnd/CSVs/comuni-italiani.csv").getAbsolutePath();
             System.out.println(path);
@@ -82,7 +84,7 @@ public class CSVRunner implements CommandLineRunner {
                     }
                     count++;
                 }
-
+                cityService.modifyProgressive("#RIF!");
             } catch (IOException | CsvValidationException e) {
                 e.printStackTrace();
             }
