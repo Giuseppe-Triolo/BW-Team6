@@ -33,17 +33,17 @@ public class ClientService {
 
     public Client create(ClientDTO clientDTO) {
         List<Address> addressList = new ArrayList<>();
-        Address newAddress = addressService.getById(clientDTO.id());
+        Address newAddress = addressService.getById(UUID.fromString(clientDTO.addressId()));
         addressList.add(newAddress);
         Client newClient = Client.fromDTO(clientDTO);
         newClient.setAdresses(addressList);
-        if (clientDTO.type().toLowerCase().equals(Type.PA.toString().toLowerCase())){
+        if (clientDTO.typeOfCompany().toLowerCase().equals(Type.PA.toString().toLowerCase())){
             newClient.setType(Type.PA);
-        } else if (clientDTO.type().toLowerCase().equals(Type.SAS.toString().toLowerCase())) {
+        } else if (clientDTO.typeOfCompany().toLowerCase().equals(Type.SAS.toString().toLowerCase())) {
             newClient.setType(Type.SAS);
-        }else if (clientDTO.type().toLowerCase().equals(Type.SPA.toString().toLowerCase())) {
+        }else if (clientDTO.typeOfCompany().toLowerCase().equals(Type.SPA.toString().toLowerCase())) {
             newClient.setType(Type.SPA);
-        }else if (clientDTO.type().toLowerCase().equals(Type.SRL.toString().toLowerCase())) {
+        }else if (clientDTO.typeOfCompany().toLowerCase().equals(Type.SRL.toString().toLowerCase())) {
             newClient.setType(Type.SRL);
         }
         newClient.setLogo("https://ui-avatars.com/api/?" + clientDTO.businessName());

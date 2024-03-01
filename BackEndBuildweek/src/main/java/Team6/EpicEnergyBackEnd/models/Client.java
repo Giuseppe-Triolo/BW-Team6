@@ -60,11 +60,11 @@ public class Client {
         client.lastContact = clientDTO.lastContact();
         client.annualTurnover = clientDTO.annualTurnover();
         client.pec = clientDTO.pec();
-        client.number = clientDTO.number();
+        client.number = clientDTO.numberOfCompany();
         client.emailReferee = clientDTO.emailReferee();
         client.nameReferee = clientDTO.nameReferee();
-        client.surnameReferee = clientDTO.surnameReferee();
-        client.numberReferee = clientDTO.numberReferee();
+        client.surnameReferee = clientDTO.lastNameReferee();
+        client.numberReferee = clientDTO.numberOfReferee();
 
         return client;
     }

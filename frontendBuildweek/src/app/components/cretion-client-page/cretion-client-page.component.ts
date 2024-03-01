@@ -40,7 +40,8 @@ export class CretionClientPageComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.addressId = this.addressSrv.id;
-    if(this.addressId == undefined){
+    console.log(this.addressId);
+    if(this.addressId != undefined){
       this.addressFormHidden = this.addressSrv.setAddressFormHidden(true);
     }
   }
@@ -64,6 +65,7 @@ export class CretionClientPageComponent implements OnInit, DoCheck {
       addressId: this.addressId,
     };
     try {
+      console.log("Questo è l'address ID",data.addressId);
       this.clientSrv.postNewClient(data).subscribe();
     } catch (error) {
       console.log(error);

@@ -3,7 +3,7 @@
   <ng-container *ngIf="!addressFormHidden">
     <app-adress-form></app-adress-form>
   </ng-container>
-  <ng-component *ngIf="addressId != undefined">
+  <ng-container *ngIf="addressFormHidden">
     <form [formGroup]="createClientForm" (ngSubmit)="onCreate()">
       <div class="mb-3">
         <label for="inputBusinessName" class="form-label"
@@ -156,6 +156,12 @@
           formControlName="typeOfCompany"
         />
       </div>
+      <button
+      type="submit"
+      class="btn btn-danger"
+      [disabled]="createClientForm.valid">
+      Conferma
+    </button>
     </form>
-  </ng-component>
+  </ng-container>
 </div>
