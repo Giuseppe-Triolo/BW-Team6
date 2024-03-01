@@ -65,7 +65,6 @@ public class Client {
         client.nameReferee = clientDTO.nameReferee();
         client.surnameReferee = clientDTO.surnameReferee();
         client.numberReferee = clientDTO.numberReferee();
-        client.logo = clientDTO.logo();
 
         return client;
     }
