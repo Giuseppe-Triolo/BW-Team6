@@ -1,21 +1,39 @@
 package Team6.EpicEnergyBackEnd.services;
 
+import Team6.EpicEnergyBackEnd.DTO.InvoiceDTO;
+import Team6.EpicEnergyBackEnd.models.Client;
 import Team6.EpicEnergyBackEnd.models.Invoice;
+import Team6.EpicEnergyBackEnd.repository.ClientRepository;
 import Team6.EpicEnergyBackEnd.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class InvoiceService {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
-    public Invoice createInvoice(Invoice invoice) {
-        return invoiceRepository.save(invoice);
+
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private ClientRepository clientRepository;
+    public Invoice createInvoice(InvoiceDTO invoice) {
+        Invoice newInvoice = new Invoice(invoice.date(), invoice.amount(), invoice.state(), invoice.year(), invoice.id());
+        invoiceRepository.save(newInvoice);
+        Client client = clientService.getBbyId(invoice.id());
+        List<Invoice> invoiceList = new ArrayList<>();
+        invoiceList.add(newInvoice);
+        client.setInvoices(invoiceList);
+        clientRepository.save(client);
+        return newInvoice;
     }
     public Optional<Invoice> getInvoice(Long invoiceNumber) {
         return invoiceRepository.findById(invoiceNumber);
@@ -35,7 +53,7 @@ public class InvoiceService {
     public List<Invoice> getAllInvoices() {
         return invoiceRepository.findAll();
     }
-    public List<Invoice> getInvoicesByClientId(String clientId) {
+    public List<Invoice> getInvoicesByClientId(UUID clientId) {
         return invoiceRepository.findByClientId(clientId);
     }
 

@@ -3,7 +3,9 @@ package Team6.EpicEnergyBackEnd.services;
 import Team6.EpicEnergyBackEnd.DTO.ClientDTO;
 import Team6.EpicEnergyBackEnd.config.MailgunSender;
 import Team6.EpicEnergyBackEnd.exceptions.NotFoundException;
+import Team6.EpicEnergyBackEnd.models.Address;
 import Team6.EpicEnergyBackEnd.models.Client;
+import Team6.EpicEnergyBackEnd.models.Type;
 import Team6.EpicEnergyBackEnd.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,8 +28,26 @@ public class ClientService {
     @Autowired
     private MailgunSender mailgunSender;
 
+    @Autowired
+    private AddressService addressService;
+
     public Client create(ClientDTO clientDTO) {
-        Client newClient = clientRepository.save(Client.fromDTO(clientDTO));
+        List<Address> addressList = new ArrayList<>();
+        Address newAddress = addressService.getById(clientDTO.id());
+        addressList.add(newAddress);
+        Client newClient = Client.fromDTO(clientDTO);
+        newClient.setAdresses(addressList);
+        if (clientDTO.type().toLowerCase().equals(Type.PA.toString().toLowerCase())){
+            newClient.setType(Type.PA);
+        } else if (clientDTO.type().toLowerCase().equals(Type.SAS.toString().toLowerCase())) {
+            newClient.setType(Type.SAS);
+        }else if (clientDTO.type().toLowerCase().equals(Type.SPA.toString().toLowerCase())) {
+            newClient.setType(Type.SPA);
+        }else if (clientDTO.type().toLowerCase().equals(Type.SRL.toString().toLowerCase())) {
+            newClient.setType(Type.SRL);
+        }
+        newClient.setLogo("https://ui-avatars.com/api/?" + clientDTO.businessName());
+        clientRepository.save(newClient);
         mailgunSender.sendRegistrationClient(newClient);
         return newClient;
     }

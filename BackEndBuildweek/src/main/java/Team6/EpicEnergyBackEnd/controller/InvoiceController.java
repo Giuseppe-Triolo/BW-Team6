@@ -1,5 +1,6 @@
 package Team6.EpicEnergyBackEnd.controller;
 
+import Team6.EpicEnergyBackEnd.DTO.InvoiceDTO;
 import Team6.EpicEnergyBackEnd.models.Invoice;
 import Team6.EpicEnergyBackEnd.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/invoices")
@@ -21,7 +23,7 @@ public class InvoiceController {
 
     @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Invoice> createInvoice(@RequestBody Invoice invoice) {
+    public ResponseEntity<Invoice> createInvoice(@RequestBody InvoiceDTO invoice) {
         Invoice createdInvoice = invoiceService.createInvoice(invoice);
         return new ResponseEntity<>(createdInvoice, HttpStatus.CREATED);
     }
@@ -48,7 +50,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/client/{clientId}")
-    public ResponseEntity<List<Invoice>> getInvoicesByClientId(@PathVariable String clientId) {
+    public ResponseEntity<List<Invoice>> getInvoicesByClientId(@PathVariable UUID clientId) {
         List<Invoice> invoices = invoiceService.getInvoicesByClientId(clientId);
         return new ResponseEntity<>(invoices, HttpStatus.OK);
     }

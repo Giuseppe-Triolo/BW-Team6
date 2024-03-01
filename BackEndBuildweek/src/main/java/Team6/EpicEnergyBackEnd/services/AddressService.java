@@ -22,11 +22,13 @@ public class AddressService {
     @Autowired
     private CityRepository cityRepository;
 
+
     public Address create(AddressDTO addressDTO) {
         Address address =  Address.fromDTO(addressDTO);
         City city = cityRepository.findByNameOfCity(addressDTO.city());
         address.setCity(city);
-        return addressRepository.save(address);
+        addressRepository.save(address);
+        return address;
     }
 
 
