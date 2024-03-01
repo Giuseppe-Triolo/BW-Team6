@@ -45,6 +45,7 @@ export class AuthService {
     }
     this.authSubj.next(userData);
   }
+  
   register(data: {
     username: string;
     name: string;

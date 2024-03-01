@@ -1,1 +1,5 @@
-<p>main-page works!</p>
+<div class="container mt-3">
+   <ul class="list-group">
+    <li *ngFor="let client of clients" class="list-group-item" (click)="changePage(client.id)">{{client.businessName}}</li>
+   </ul>
+</div>
