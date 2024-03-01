@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/addresses")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AddressController {
 
     @Autowired
@@ -33,11 +34,11 @@ public class AddressController {
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Address updateByID(@RequestBody AddressDTO addressDTO, @PathVariable UUID id) {
-        return addressService.findByIdAndUpdate( id, Address.fromDTO(addressDTO));
+        return addressService.findByIdAndUpdate(id, Address.fromDTO(addressDTO));
     }
 
     @GetMapping("/{id}")
-    public Address getById(@PathVariable UUID id ) {
+    public Address getById(@PathVariable UUID id) {
         return addressService.getById(id);
     }
 

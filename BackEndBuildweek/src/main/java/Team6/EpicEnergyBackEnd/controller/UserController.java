@@ -17,6 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public User getProfile(@AuthenticationPrincipal User currentUser){
+    public User getProfile(@AuthenticationPrincipal User currentUser) {
         return currentUser;
     }
 
@@ -46,13 +47,13 @@ public class UserController {
     }
 
     @PutMapping("/profile")
-    public User updateMyProfile(@AuthenticationPrincipal User currentUser,  @RequestBody User updateUser){
+    public User updateMyProfile(@AuthenticationPrincipal User currentUser, @RequestBody User updateUser) {
         return this.uploadUser(currentUser.getId(), updateUser);
     }
 
     @DeleteMapping("/profile")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteMySelf(@AuthenticationPrincipal User currentUser){
+    public void deleteMySelf(@AuthenticationPrincipal User currentUser) {
         this.userService.deleteUser(currentUser.getId());
     }
 
@@ -64,13 +65,13 @@ public class UserController {
     }
 
     @PatchMapping("/profile/upload")
-    public User uploadAvatar(@AuthenticationPrincipal User currentUser, @RequestParam("avatar")MultipartFile image) throws IOException{
+    public User uploadAvatar(@AuthenticationPrincipal User currentUser, @RequestParam("avatar") MultipartFile image) throws IOException {
         return this.userService.uploadAvatar(currentUser, image);
     }
 
     @PatchMapping("/{UserId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public User updateRole(@PathVariable UUID UserId ,@RequestBody RoleDTO role) throws Exception {
+    public User updateRole(@PathVariable UUID UserId, @RequestBody RoleDTO role) throws Exception {
         return this.userService.updateRole(UserId, role);
     }
 }
