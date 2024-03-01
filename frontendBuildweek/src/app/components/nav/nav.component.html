@@ -16,6 +16,14 @@
         <div class="d-flex flex-row gap-2">
           <a class="btn btn-outline-danger" (click)="logOut()">Logout</a>
         </div>
+        <ng-container *ngSwitchCase="'/main-page'">
+          ><a
+            class="btn btn-outline-danger"
+            routerLink="/creation-client"
+            routerLinkActive="active"
+            >Crea un cliente</a
+          >
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>

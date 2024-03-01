@@ -1,5 +1,12 @@
 <div class="container mt-3">
-   <ul class="list-group">
-    <li *ngFor="let client of clients" class="list-group-item" (click)="changePage(client.id)">{{client.businessName}}</li>
-   </ul>
+  <ul class="list-group">
+    <li
+      *ngFor="let client of clients"
+      class="list-group-item"
+      (click)="changePage(client.id)"
+    >
+      {{ client.businessName }}
+    </li>
+  </ul>
+  <app-cretion-client-page></app-cretion-client-page>
 </div>

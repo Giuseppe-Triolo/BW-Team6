@@ -1,0 +1,161 @@
+<div class="container">
+  <h1>Crea un nuovo cliente!</h1>
+  <ng-container *ngIf="!addressFormHidden">
+    <app-adress-form></app-adress-form>
+  </ng-container>
+  <ng-component *ngIf="addressId != null">
+    <form [formGroup]="createClientForm" (ngSubmit)="onCreate()">
+      <div class="mb-3">
+        <label for="inputBusinessName" class="form-label"
+          >Business name:
+        </label>
+        <input
+          type="text"
+          name="businessName"
+          class="form-control"
+          id="inputBusinessName"
+          formControlName="inputBusinessName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputVatNumber" class="form-label">Partita Iva: </label>
+        <input
+          type="text"
+          name="vatNumber"
+          class="form-control"
+          id="inputVatNumber"
+          formControlName="vatNumber"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email: </label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="inputEmail"
+          formControlName="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputStartDate" class="form-label"
+          >Data inizio business (Attenzione deve essere nel formato YYYY-MM-DD):
+        </label>
+        <input
+          type="text"
+          name="startDate"
+          class="form-control"
+          id="inputStartDate"
+          formControlName="startDate"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputLastContact" class="form-label"
+          >Data dell'ultimo contatto (Attenzione deve essere nel formato
+          YYYY-MM-DD):
+        </label>
+        <input
+          type="text"
+          name="lastContact"
+          class="form-control"
+          id="inputLastContact"
+          formControlName="lastContact"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputAnnualTurnover" class="form-label"
+          >Inserire il fatturato annuale:
+        </label>
+        <input
+          type="text"
+          name="annualTurnover"
+          class="form-control"
+          id="inputAnnualTurnover"
+          formControlName="annualTurnover"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputPec" class="form-label">PEC: </label>
+        <input
+          type="email"
+          name="pec"
+          class="form-control"
+          id="inputPec"
+          formControlName="pec"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputNumberOfCompany" class="form-label"
+          >Numero aziendale:
+        </label>
+        <input
+          type="text"
+          name="numberOfCompany"
+          class="form-control"
+          id="inputNumberOfCompany"
+          formControlName="numberOfCompany"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputEmailReferee" class="form-label"
+          >Email del referente aziendale:
+        </label>
+        <input
+          type="email"
+          name="emailReferee"
+          class="form-control"
+          id="inputEmailReferee"
+          formControlName="emailReferee"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputNameReferee" class="form-label"
+          >Nome del referente aziendale:
+        </label>
+        <input
+          type="text"
+          name="nameReferee"
+          class="form-control"
+          id="inputNameReferee"
+          formControlName="nameReferee"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputLastNameReferee" class="form-label"
+          >Cognome del referente aziendale:
+        </label>
+        <input
+          type="text"
+          name="lastNameReferee"
+          class="form-control"
+          id="inputLastNameReferee"
+          formControlName="lastNameReferee"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputNumberOfReferee" class="form-label"
+          >Numero del referente aziendale:
+        </label>
+        <input
+          type="text"
+          name="numberOfReferee"
+          class="form-control"
+          id="inputNumberOfReferee"
+          formControlName="numberOfReferee"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputTypeOfCompany" class="form-label"
+          >Tipo dell'azienda:
+        </label>
+        <input
+          type="text"
+          name="typeOfCompany"
+          class="form-control"
+          id="inputTypeOfCompany"
+          formControlName="typeOfCompany"
+        />
+      </div>
+    </form>
+  </ng-component>
+</div>

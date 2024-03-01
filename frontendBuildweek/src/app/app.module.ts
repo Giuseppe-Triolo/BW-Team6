@@ -12,6 +12,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { AuthGuard } from './auth/auth.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { CretionClientPageComponent } from './components/cretion-client-page/cretion-client-page.component';
+import { AdressFormComponent } from './components/adress-form/adress-form.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent },
@@ -28,6 +30,8 @@ const routes: Routes = [
     NavComponent,
     MainPageComponent,
     RegisterPageComponent,
+    CretionClientPageComponent,
+    AdressFormComponent,
   ],
   imports: [
     BrowserModule,

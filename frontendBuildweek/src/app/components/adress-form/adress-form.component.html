@@ -1,0 +1,61 @@
+<div class="container">
+  <form [formGroup]="createAdressForm" (ngSubmit)="onCreate()">
+    <div class="mb-3">
+      <label for="inputStreet" class="form-label">Via: </label>
+      <input
+        type="text"
+        name="street"
+        class="form-control"
+        id="inputStreet"
+        formControlName="street"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="inputHouseNumber" class="form-label">Numero: </label>
+      <input
+        type="text"
+        name="houseNumber"
+        class="form-control"
+        id="inputHouseNumber"
+        formControlName="houseNumber"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="inputCountry" class="form-label">Stato: </label>
+      <input
+        type="text"
+        name="country"
+        class="form-control"
+        id="inputCountry"
+        formControlName="country"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="inputPostalCode" class="form-label">CAP: </label>
+      <input
+        type="text"
+        name="postalCode"
+        class="form-control"
+        id="inputPostalCode"
+        formControlName="postalCode"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="inputCity" class="form-label">Comune: </label>
+      <input
+        type="text"
+        name="city"
+        class="form-control"
+        id="inputCity"
+        formControlName="city"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-danger"
+      [disabled]="!createAdressForm.valid"
+    >
+      Conferma
+    </button>
+  </form>
+</div>

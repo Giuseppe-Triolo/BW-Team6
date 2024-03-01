@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/module/client';
 import { Page } from 'src/app/module/page';
-import { ClientServiceService } from 'src/app/service/client-service.service';
+import { ClientService } from 'src/app/service/client-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -13,10 +13,7 @@ export class MainPageComponent implements OnInit {
   page!: Page;
   clients: Client[] = [];
 
-  constructor(
-    private clientSrv: ClientServiceService,
-    private router: Router
-  ) {}
+  constructor(private clientSrv: ClientService, private router: Router) {}
 
   ngOnInit(): void {
     this.getClient();
