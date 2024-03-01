@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   jwtHelper = new JwtHelperService();
-  apiURL = environment.apiURL;
+  apiURL = environment.authURL;
   private authSubj = new BehaviorSubject<null | AuthData>(null);
   user$ = this.authSubj.asObservable();
   utente!: AuthData;
@@ -45,7 +45,6 @@ export class AuthService {
     }
     this.authSubj.next(userData);
   }
-  
   register(data: {
     username: string;
     name: string;

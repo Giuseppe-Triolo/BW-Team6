@@ -22,6 +22,10 @@ const routes: Routes = [
     component: RegisterPageComponent,
   },
   { path: '', component: MainPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'creation-client-page',
+    component: CretionClientPageComponent,
+  },
 ];
 @NgModule({
   declarations: [
