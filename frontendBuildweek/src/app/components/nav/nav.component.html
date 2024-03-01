@@ -1,5 +1,5 @@
 <nav class="navbar p-0">
-  <div class="container-fluid bg-black d-flex justify-content-between">
+  <div class="container-fluid bg-black">
     <a class="navbar-brand text-center"
       ><img src="../../../assets/30958-4-energy-hd.png" alt=""
     /></a>
@@ -13,17 +13,29 @@
         >
       </ng-container>
       <ng-container *ngSwitchCase="'/'">
-        <div class="d-flex flex-row gap-2">
-          <a class="btn btn-outline-danger" (click)="logOut()">Logout</a>
+        <div class="d-flex justify-content-between flex-grow-1">
+          <div>
+            ><a
+              class="btn btn-outline-warning"
+              routerLink="/creation-client-page"
+              routerLinkActive="active"
+              >Crea un cliente</a
+            >
+          </div>
+          <div>
+            <a class="btn btn-outline-danger" (click)="logOut()">Logout</a>
+          </div>
         </div>
-        <ng-container *ngSwitchCase="'/main-page'">
-          ><a
-            class="btn btn-outline-danger"
-            routerLink="/creation-client"
+      </ng-container>
+      <ng-container *ngSwitchCase="'/creation-client-page'">
+        <div>
+          <a
+            class="btn btn-outline-warning"
             routerLinkActive="active"
-            >Crea un cliente</a
+            routerLink="/"
+            >Home</a
           >
-        </ng-container>
+        </div>
       </ng-container>
     </ng-container>
   </div>

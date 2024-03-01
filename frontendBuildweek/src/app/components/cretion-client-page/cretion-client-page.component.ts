@@ -1,5 +1,12 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AddressService } from 'src/app/service/address-service.service';
 import { ClientService } from 'src/app/service/client-service.service';
 
@@ -16,7 +23,8 @@ export class CretionClientPageComponent implements OnInit, DoCheck {
   constructor(
     private addressSrv: AddressService,
     private fb: FormBuilder,
-    private clientSrv: ClientService
+    private clientSrv: ClientService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +49,10 @@ export class CretionClientPageComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.addressId = this.addressSrv.id;
     console.log(this.addressId);
-    if(this.addressId != undefined){
+    if (this.addressId != undefined) {
       this.addressFormHidden = this.addressSrv.setAddressFormHidden(true);
     }
   }
-
 
   onCreate() {
     const data = {
@@ -65,11 +72,12 @@ export class CretionClientPageComponent implements OnInit, DoCheck {
       addressId: this.addressId,
     };
     try {
-      console.log("Questo è l'address ID",data.addressId);
+      console.log("Questo è l'address ID", data.addressId);
       this.clientSrv.postNewClient(data).subscribe();
     } catch (error) {
       console.log(error);
       alert(error);
     }
+    this.router.navigate(['/']);
   }
 }
