@@ -15,7 +15,7 @@ export class ClientService {
   getAllClient() {
     return this.http.get<Page>(`${this.apiUrl}/clients`);
   }
-  postNewAddress(data: {
+  postNewClient(data: {
     addressId: string;
     businessName: string;
     vatNumber: number;
@@ -24,12 +24,12 @@ export class ClientService {
     lastContact: Date;
     annualTurnover: number;
     pec: string;
-    number: number;
+    numberOfCompany: number;
     emailReferee: string;
     nameReferee: string;
-    surnameReferee: string;
-    numberReferee: number;
-    type: string;
+    lastNameReferee: string;
+    numberOfReferee: number;
+    typeOfCompany: string;
   }) {
     return this.http.post<Client>(`${this.apiUrl}/clients`, data);
   }

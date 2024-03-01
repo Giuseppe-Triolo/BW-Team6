@@ -3,7 +3,7 @@
   <ng-container *ngIf="!addressFormHidden">
     <app-adress-form></app-adress-form>
   </ng-container>
-  <ng-component *ngIf="addressId != null">
+  <ng-component *ngIf="addressId != undefined">
     <form [formGroup]="createClientForm" (ngSubmit)="onCreate()">
       <div class="mb-3">
         <label for="inputBusinessName" class="form-label"
@@ -14,7 +14,7 @@
           name="businessName"
           class="form-control"
           id="inputBusinessName"
-          formControlName="inputBusinessName"
+          formControlName="businessName"
         />
       </div>
       <div class="mb-3">
